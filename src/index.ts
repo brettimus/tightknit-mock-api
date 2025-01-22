@@ -138,6 +138,8 @@ app.put("/admin/v0/groups/:groupId/members", async (c) => {
 
 // Mount the Fiberplane playground to play with the API
 app.use("/fp/*", createMiddleware({
+  // TODO - Just point the embedded playground to the api spec at `https://api.tightknit.dev/doc`
+  //
   // @ts-expect-error - The imported spec does not match our expected OpenAPIv3 type
   spec: apiSpec,
   apiKey: "1234567890",
