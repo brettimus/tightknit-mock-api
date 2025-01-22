@@ -1,0 +1,188 @@
+# Codebase Explained
+
+This is a typescript project that serves a mock data api given the api spec in `src/tightknit-spec.ts`.
+
+The project uses:
+- pnpm for package management
+- TypeScript as the primary language
+- Hono as the api framework
+- Cloudflare Wrangler for development
+- Cloudflare Workers for deployment
+- Environment variables are accessed within api route handlers as `c.env.NAME_OF_VAR`
+- This is NOT a node.js repo, so `process.env` is not available in the API
+
+# Coding Style Guide
+
+For typescript: 
+- Use block syntax on multiple lines for if statements
+- Prefer template literals over string concatenation
+- Use double quotes for strings in JS/TS.
+- Use TypeScript; prefer types over interfaces.
+- Prefer unknown over any (types)
+- Use functional components with TypeScript interfaces.
+- Use self-closing tags in JSX when an element has no content
+
+
+## Core Principles
+1. Programming Paradigms
+Write concise, technical TypeScript code
+Use functional and declarative programming patterns
+Avoid classes in favor of pure functions and hooks
+Example:
+```typescript
+     // Prefer:
+     const calculateTotal = (items: Item[]): number =>
+       items.reduce((sum, item) => sum + item.price, 0);
+
+     // Avoid:
+     class Calculator {
+       calculateTotal(items: Item[]): number {
+         let total = 0;
+         for (const item of items) {
+           total += item.price;
+         }
+         return total;
+       }
+     }
+```
+
+2. Code Organization
+Main function goes first in file
+Important code belongs near the top
+Use alphabetical ordering when no clear ordering exists
+Extract reusable logic into custom hooks or utility functions
+Example:
+```typescript
+     // pages/UserDashboard.tsx
+     export default function UserDashboard() {
+       // Main component logic first
+       const { data, actions } = useUserDashboard();
+       
+       // Handlers next
+       const handleUpdate = useCallback(() => {
+         actions.updateUser(data);
+       }, [actions, data]);
+       
+       // Render last
+       return <DashboardView data={data} onUpdate={handleUpdate} />;
+     }
+     
+     // Extracted hook
+     function useUserDashboard() {
+       // Reusable logic
+     }
+```
+
+## Naming Conventions
+1. Basic Rules
+Names must capture what a thing is or does
+Use nouns for objects/data structures
+Use verbs for functions/methods
+No abbreviations except for primitive integers in sort/matrix operations
+Example:
+```typescript
+     // Prefer:
+     const userProfile = getUserProfile(id);
+     const calculateTotal = (items: CartItem[]): number => {
+       return items.reduce((sum, item) => sum + item.price, 0);
+     };
+
+     // Avoid:
+     const prof = getProf(id);
+     const calc = (items: CartItem[]): number => {
+       return items.reduce((s, i) => s + i.p, 0);
+     };
+```
+     
+2. TypeScript Specifics
+Use camelCase for variables and functions
+Use PascalCase for types and interfaces
+Use proper capitalization for acronyms
+Use auxiliary verbs for boolean states
+Example:
+```typescript
+     interface UserAPIResponse {
+       id: string;
+       isVIPMember: boolean;
+       hasSubscription: boolean;
+     }
+
+     const [isLoading, setIsLoading] = useState(false);
+     const hasPermission = userRole === 'admin';
+``` 
+3. Variable Qualifiers
+Add units as suffixes
+Order qualifiers by descending significance
+Match character length for related variables
+Example:
+```typescript
+     const timeout_ms_max = 1000;
+     const timeout_ms_min = 100;
+     
+     const source_offset = 0;
+     const target_offset = 10;  // Same length as source_offset
+``` 
+
+4. Documentation
+WHEN I ASK TO DOCUMENT SOMETHING, DO NOT DO PARAMETER TYPE DOCUMENTATION USING JSDOC - we rely on typescript to document parameters.
+
+## TypeScript Guidelines
+1. Type System
+Use TypeScript for all code
+Prefer interfaces over types for object definitions
+Avoid enums; use const objects with 'as const' assertion
+Define strict types for message passing
+Example:
+```typescript
+     // Prefer:
+     const MessageType = {
+       INFO: 'INFO',
+       ERROR: 'ERROR',
+       WARNING: 'WARNING',
+     } as const;
+     type MessageType = typeof MessageType[keyof typeof MessageType];
+
+     interface Message {
+       type: MessageType;
+       content: string;
+       timestamp: number;
+     }
+
+     // Avoid:
+     enum MessageType {
+       INFO,
+       ERROR,
+       WARNING,
+     }
+``` 
+2. Function Types
+Use explicit return types
+Use function overloads for complex signatures
+Example:
+```typescript
+     function parseResponse(data: string): ParsedData;
+     function parseResponse(data: number): ParsedNumericData;
+     function parseResponse(data: string | number): ParsedData | ParsedNumericData {
+       // Implementation
+     }
+```
+
+## Documentation Requirements
+1. Code Documentation
+Document complex logic only
+Maintain clear README
+Document API interactions
+Example:
+```typescript
+     /**
+      * Processes user transactions using the Smith-Waterman algorithm
+      * Time complexity: O(n*m) where n is transaction count
+      * and m is the validation rules count
+      */
+     function processTransactions(
+       transactions: Transaction[],
+       rules: ValidationRule[]
+     ): ProcessedTransaction[] {
+       // Implementation
+     }
+```     
