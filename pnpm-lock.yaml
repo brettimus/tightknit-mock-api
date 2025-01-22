@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@fiberplane/embedded':
-        specifier: ^0.0.18
-        version: 0.0.18(hono@4.6.17)
+        specifier: ^0.0.19
+        version: 0.0.19(hono@4.6.17)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.7
@@ -660,8 +660,8 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@fiberplane/embedded@0.0.18':
-    resolution: {integrity: sha512-ZPeD3jGeJRM1WX+4AeMb+ioQYdQXwtfd6qHlHK9x43JXSjHARrXzscLVY2NJCuWqGjDqJg6LFTSVVi6HO7YeUQ==}
+  '@fiberplane/embedded@0.0.19':
+    resolution: {integrity: sha512-X9eKb3/0kFL5RmnipojorNBVBo7yp1Nljyf7lmQClUpzLv4LoH2pD4vXY4piH65Xt3OH2r8cZM4tSfRDkWqoHw==}
     peerDependencies:
       hono: ^4.0
 
@@ -1576,7 +1576,7 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@fiberplane/embedded@0.0.18(hono@4.6.17)':
+  '@fiberplane/embedded@0.0.19(hono@4.6.17)':
     dependencies:
       hono: 4.6.17
       openapi-types: 12.1.3

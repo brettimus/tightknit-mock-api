@@ -6,7 +6,7 @@
     "fiberplane": "npx @fiberplane/studio@latest"
   },
   "dependencies": {
-    "@fiberplane/embedded": "^0.0.18",
+    "@fiberplane/embedded": "^0.0.19",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.4",
     "hono": "^4.6.7"
