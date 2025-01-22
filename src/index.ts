@@ -1,10 +1,14 @@
 import { createMiddleware } from "@fiberplane/embedded";
 import { instrument } from "@fiberplane/hono-otel";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { apiSpec } from "./tightknit-spec";
 import { mockData } from "./mockData";
 
 const app = new Hono();
+
+app.use("*", cors());
+
 // Assign badge to user
 app.post("/admin/v0/badges/:badgeId/assign", async (c) => {
   const badgeId = c.req.param("badgeId");
