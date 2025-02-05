@@ -1,5 +1,6 @@
 import { createMiddleware } from "@fiberplane/embedded";
 import { instrument } from "@fiberplane/hono-otel";
+import { apiReference } from "@scalar/hono-api-reference"
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { apiSpec } from "./tightknit-spec";
@@ -148,5 +149,40 @@ app.use("/fp/*", createMiddleware({
   spec: apiSpec,
   apiKey: "1234567890",
 }));
+
+function hasServers(spec: unknown): spec is { servers: unknown[] } {
+  return !!spec && typeof spec === "object" && "servers" in spec && Array.isArray(spec.servers) && spec.servers.length > 0;
+}
+
+app.get("/openapi.json", (c) => {
+  const origin = new URL(c.req.url).origin;
+
+  // HACK - Allows us to force a server of "localhost:8787" even when the playground SPA is running in dev mode on :6660
+  const spec = {
+    ...apiSpec,
+    servers: hasServers(apiSpec) ? apiSpec.servers : []
+  };
+
+  if (origin?.includes('localhost')) {
+    spec.servers = [
+      {
+        url: 'http://localhost:8787',
+        description: 'Local development server'
+      },
+      ...(spec.servers || []),
+    ];
+  }
+
+  return c.json(spec);
+});
+
+app.get(
+  '/reference',
+  apiReference({
+    spec: {
+      url: '/openapi.json',
+    },
+  }),
+)
 
 export default instrument(app);
