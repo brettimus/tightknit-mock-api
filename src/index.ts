@@ -146,6 +146,7 @@ app.use("/fp/*", createMiddleware({
   // NOTE - Could also point the embedded playground to the api spec at `https://api.tightknit.dev/doc`
   openapi: {
     url: "/openapi.json",
+    // content: JSON.stringify(apiSpec),
   },
   apiKey: "1234567890",
 }));
