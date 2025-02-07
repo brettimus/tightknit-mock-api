@@ -186,4 +186,5 @@ app.get(
   }),
 )
 
-export default instrument(app);
+// export default instrument(app);
+export default app;

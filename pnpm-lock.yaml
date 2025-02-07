@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@fiberplane/embedded':
-        specifier: 0.0.30-alpha.7
-        version: 0.0.30-alpha.7(hono@4.6.17)
+        specifier: 0.0.30
+        version: 0.0.30(hono@4.6.17)
       '@scalar/hono-api-reference':
         specifier: ^0.5.171
         version: 0.5.171(hono@4.6.17)
@@ -663,8 +663,8 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@fiberplane/embedded@0.0.30-alpha.7':
-    resolution: {integrity: sha512-o49/gsrO3h9YrhAuZ6aBkQb3BBy4ASeYi+KJ9iBS2mRgEl13T3TV3pNlCjC+QL/nO+nkpcZCyHTDH11mi9IF3g==}
+  '@fiberplane/embedded@0.0.30':
+    resolution: {integrity: sha512-Sl/RM0QhtkXGstXO5QqsM7R+s6g2LToA+Q2r29ATmeRZjOjurjjCEavRx/ZZty1plFPEKTAoIJvXhC/tGBagUw==}
     peerDependencies:
       hono: ^4.0
 
@@ -1602,7 +1602,7 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@fiberplane/embedded@0.0.30-alpha.7(hono@4.6.17)':
+  '@fiberplane/embedded@0.0.30(hono@4.6.17)':
     dependencies:
       hono: 4.6.17
       openapi-types: 12.1.3
