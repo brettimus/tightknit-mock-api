@@ -148,7 +148,7 @@ app.use("/fp/*", createMiddleware({
     url: "/openapi.json",
     // content: JSON.stringify(apiSpec),
   },
-  apiKey: "1234567890",
+  // apiKey: "",
 }));
 
 function hasServers(spec: unknown): spec is { servers: unknown[] } {
